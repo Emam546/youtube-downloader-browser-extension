@@ -31,9 +31,8 @@ jobs:
         run: 
           npx crx pack .output/chrome-mv3
       - name: Zip Extension
-        run: |
-          cd .output/chrome-mv3
-          zip -r ../../extension.zip .
+        run: 
+          npm run zip
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
