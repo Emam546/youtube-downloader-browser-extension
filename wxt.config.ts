@@ -5,8 +5,8 @@ import path from "path";
 export default defineConfig({
   modules: ["@wxt-dev/module-react"],
   manifest: {
-      "name": "Video Downloader Bridge",
-  "description": "Send the current video/page URL to the downloader app",
+    name: "Youtube Downloader",
+    description: "Send the current video/page URL to the downloader app",
     icons: {
       128: "/icon/icon.png",
     },
