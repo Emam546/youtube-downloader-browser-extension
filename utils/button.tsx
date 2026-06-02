@@ -5,13 +5,9 @@ export function createButton(url: string | (() => string)) {
   const container = document.createElement("div");
 
   createRoot(container).render(
-    <div className="top-3 right-3 absolute z-999999999999999 ">
+    <div className="top-3 right-3 absolute z-999999999999999 opacity-30 hover:opacity-100 transition-opacity duration-300">
       <MainSmallButton
         onClick={() => {
-          if (!url) {
-            console.log("No video URL found");
-            return;
-          }
           if (typeof url == "string") sendToDownloader(url);
           else sendToDownloader(url());
         }}

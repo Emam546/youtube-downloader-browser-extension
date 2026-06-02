@@ -13,7 +13,7 @@ export function MainSmallButton({
       type="button"
       className={classNames(
         className,
-        "m-0 bg-primary text-white text-xl font-bold   rounded-full cursor-pointer aspect-square",
+        "flex m-0 bg-primary text-white text-xl font-bold rounded-full cursor-pointer aspect-square",
       )}
       onClick={function (event) {
         event.preventDefault();
@@ -24,7 +24,7 @@ export function MainSmallButton({
     >
       <LogoIcon
         alt="Downloader App"
-        className="select-none w-full block min-w-4"
+        className="select-none min-w-2 aspect-square w-full p-0 m-0"
       />
     </button>
   );
