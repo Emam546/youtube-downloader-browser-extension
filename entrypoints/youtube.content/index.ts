@@ -3,6 +3,7 @@ import { mountYoutubeWatchButton } from "./injectors/DownloadWatch";
 import { mountYoutubeThumbnailButtons } from "./injectors/thumbnails";
 import { mountYoutubeShorts } from "./injectors/reels";
 import { mountPlaylistPanelViewer } from "./injectors/playlist";
+import "./style.scss";
 export default defineContentScript({
   matches: ["*://*.youtube.com/*"],
   main() {

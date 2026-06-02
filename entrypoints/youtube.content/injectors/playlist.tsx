@@ -3,7 +3,7 @@ import { sendToDownloader } from "@utils/index";
 import { createRoot } from "react-dom/client";
 import { getYoutubeUrlFromAnchor, isValidURL } from "../utils";
 import { MainSmallButton } from "@components/buttons/mainSmall";
-import { youtubeThumbnail } from "../shared";
+import { youtube_container, youtubeThumbnail } from "../shared";
 
 export function mountPlaylistPanelViewer(): void {
   const actions = document.querySelectorAll(
@@ -15,12 +15,17 @@ export function mountPlaylistPanelViewer(): void {
     if (!url) return;
     const actionBar = con.querySelector("ytd-menu-renderer")!;
     if (!actionBar) return;
+    con.classList.add(youtube_container);
+
     let container = document.createElement("div");
     container.className = youtubeThumbnail;
     actionBar.insertBefore(container, actionBar.children[1]);
     createRoot(container).render(
       <div className="pl-10">
-        <MainSmallButton className="p-3 w-15" onClick={() => sendToDownloader(url)} />
+        <MainSmallButton
+          className="p-3 w-15"
+          onClick={() => sendToDownloader(url)}
+        />
       </div>,
     );
   });

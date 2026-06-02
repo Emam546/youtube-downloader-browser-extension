@@ -3,7 +3,7 @@ import { sendToDownloader } from "@utils/index";
 import { createRoot } from "react-dom/client";
 import { getYoutubeUrlFromAnchor, isValidURL } from "../utils";
 import classNames from "classnames";
-import { youtubeThumbnail } from "../shared";
+import { youtube_container, youtubeThumbnail } from "../shared";
 import { MainSmallButton } from "@components/buttons/mainSmall";
 
 export function mountYoutubeThumbnailButtons(): void {
@@ -19,6 +19,7 @@ function RichThumbnail() {
       if (!videoURl) return;
       if (window.getComputedStyle(thumb).position === "static")
         thumb.style.position = "relative";
+      thumb.classList.add(youtube_container);
 
       const container = document.createElement("div");
       container.className = youtubeThumbnail;
@@ -37,7 +38,7 @@ function RichThumbnail() {
 function lockUpView() {
   document
     .querySelectorAll<HTMLAnchorElement>(
-      "yt-lockup-view-model ,ytd-grid-video-renderer ,ytm-shorts-lockup-view-model",
+      "yt-lockup-view-model ,ytd-video-renderer ,ytd-grid-video-renderer ,ytm-shorts-lockup-view-model",
     )
     .forEach((thumb) => {
       if (thumb.closest(`ytd-rich-item-renderer`)) return;
@@ -46,7 +47,7 @@ function lockUpView() {
       if (!videoURl) return;
       if (window.getComputedStyle(thumb).position === "static")
         thumb.style.position = "relative";
-
+      thumb.classList.add(youtube_container);
       const container = document.createElement("div");
       container.className = youtubeThumbnail;
       thumb

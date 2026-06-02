@@ -1,0 +1,10 @@
+.yt-downloader-big-container {
+  .yt-downloader-extension-button {
+    opacity: 30%;
+    transition: all;
+    transition-duration: 300ms;
+  }
+  &:hover .yt-downloader-extension-button {
+    opacity: 100%;
+  }
+}

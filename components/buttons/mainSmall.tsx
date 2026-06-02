@@ -9,11 +9,11 @@ export function MainSmallButton({
   return (
     <button
       {...props}
-      id="yt-downloader-extension-button"
       type="button"
       className={classNames(
+        "yt-downloader-extension-button",
         className,
-        "flex m-0 bg-primary text-white text-xl font-bold rounded-full cursor-pointer aspect-square",
+        "flex m-0 bg-primary text-white text-xl font-bold rounded-full cursor-pointer aspect-square border-none",
       )}
       onClick={function (event) {
         event.preventDefault();

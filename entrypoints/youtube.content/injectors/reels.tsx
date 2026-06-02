@@ -18,7 +18,7 @@ export function mountYoutubeShorts(): void {
     buttonsContainer?.insertBefore(container, buttonsContainer.children[2]);
     createRoot(container).render(
       <MainSmallButton
-        className={"p-3 w-18 mb-4"}
+        className={"p-4 w-18 mb-4"}
         onClick={(event) => {
           event.preventDefault();
           event.stopPropagation();
