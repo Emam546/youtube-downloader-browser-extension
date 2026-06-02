@@ -1,4 +1,5 @@
 import { MainSmallButton } from "@components/buttons/mainSmall";
+import { createButton } from "@utils/button";
 import { createRoot } from "react-dom/client";
 
 function findVideoId(url: string) {
@@ -106,24 +107,4 @@ export function mount() {
       post.appendChild(btn);
       post.setAttribute("data-mark", "1");
     });
-}
-
-function createButton(url: string) {
-  const container = document.createElement("div");
-
-  createRoot(container).render(
-    <div className="top-3 right-3 absolute z-999999999999999 ">
-      <MainSmallButton
-        onClick={() => {
-          if (!url) {
-            console.log("No video URL found");
-            return;
-          }
-          sendToDownloader(url);
-        }}
-        className="w-12 p-3 border-none"
-      />
-    </div>,
-  );
-  return container;
 }
