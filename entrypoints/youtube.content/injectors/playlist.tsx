@@ -20,7 +20,7 @@ export function mountPlaylistPanelViewer(): void {
     actionBar.insertBefore(container, actionBar.children[1]);
     createRoot(container).render(
       <div className="pl-10">
-        <MainSmallButton className="p-3" onClick={() => sendToDownloader(url)} />
+        <MainSmallButton className="p-3 w-15" onClick={() => sendToDownloader(url)} />
       </div>,
     );
   });
