@@ -8,18 +8,40 @@ interface VideoDownload extends Message {
     url: string;
   };
 }
-
+function sendToApp(url: string) {}
 export default defineBackground(() => {
-  function openDownloaderForUrl(rawUrl: string) {
+  async function openDownloaderForUrl(
+    rawUrl: string,
+    behavior?: "app" | "website",
+    websiteUrl?: string,
+  ) {
     if (!rawUrl) return;
-    const encodedUrl = encodeURIComponent(`link="${rawUrl}"`);
-    const deepLink = `youtube-downloader://${encodedUrl}`;
-    browser.tabs.create({ url: deepLink });
+    const settings = await browser.storage.local.get([
+      "defaultBehavior",
+      "websiteUrl",
+    ]);
+    if (!behavior) behavior = settings.behavior as "app";
+    if (!websiteUrl) websiteUrl = settings.websiteUrl as string;
+
+    if (behavior === "website") {
+      const encodedUrl = encodeURIComponent(rawUrl);
+      const downloadUrl = `${websiteUrl || "https://youtube-playlists.onrender.com/"}?referredLink=${encodedUrl}`;
+      browser.tabs.create({ url: downloadUrl });
+    } else {
+      const encodedUrl = encodeURIComponent(`link="${rawUrl}"`);
+      const deepLink = `youtube-downloader://${encodedUrl}`;
+      browser.tabs.create({ url: deepLink });
+    }
   }
+
   browser.runtime.onMessage.addListener((msg: Message) => {
     switch (msg.type) {
       case "download-video":
-        openDownloaderForUrl(msg.payload.url);
+        openDownloaderForUrl(
+          msg.payload.url,
+          msg.payload.behavior,
+          msg.payload.websiteUrl,
+        );
     }
   });
 });

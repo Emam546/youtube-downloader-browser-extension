@@ -10,6 +10,7 @@ export default defineConfig({
   },
   manifest: {
     version: packageJson.version,
+    permissions: ["storage"],
 
     name: "Youtube Downloader",
     description: "Send the current video/page URL to the downloader app",
@@ -21,6 +22,9 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "."),
+        "@components": path.resolve(__dirname, "./components"),
+        "@utils": path.resolve(__dirname, "./utils"),
+        "@assets": path.resolve(__dirname, "./assets"),
       },
     },
     plugins: [tailwindcss()],

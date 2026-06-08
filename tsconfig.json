@@ -3,9 +3,10 @@
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "paths": {
+      "@/*": ["./*"],
       "@assets/*": ["./assets/*"],
       "@utils/*": ["./utils/*"],
-      "@components/*": ["./components/*"],
+      "@components/*": ["./components/*"]
     },
     "jsx": "react-jsx"
   }
