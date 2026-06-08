@@ -22,12 +22,7 @@ export function mountYoutubeWatchButton(): void {
           className="inline-flex items-center gap-2 bg-primary text-white text-xl font-bold p-2.5 rounded-3xl cursor-pointer border-none"
           aria-label="Download this video with the app"
           onClick={() => {
-            const video = document.querySelector("video");
-            const currentTime = video?.currentTime ?? 0;
-
-            sendToDownloader(
-              `${window.location.href}&t=${Math.floor(currentTime)}`,
-            );
+            sendToDownloader(`${window.location.href}`);
           }}
         >
           <LogoIcon alt="Downloader App" className="w-10" />

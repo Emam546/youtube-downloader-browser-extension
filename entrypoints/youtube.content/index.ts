@@ -4,11 +4,13 @@ import { mountYoutubeThumbnailButtons } from "./injectors/thumbnails";
 import { mountYoutubeShorts } from "./injectors/reels";
 import { mountPlaylistPanelViewer } from "./injectors/playlist";
 import "./style.scss";
+import { mountYoutubeShareButton } from "./injectors/share";
 export default defineContentScript({
   matches: ["*://*.youtube.com/*"],
   main() {
     const inject = () => {
       mountYoutubeWatchButton();
+      mountYoutubeShareButton();
       mountPlaylistPanelViewer();
       mountYoutubeThumbnailButtons();
       mountYoutubeShorts();
