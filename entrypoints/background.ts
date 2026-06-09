@@ -8,21 +8,21 @@ interface VideoDownload extends Message {
     url: string;
   };
 }
-function sendToApp(url: string) {}
 export default defineBackground(() => {
   async function openDownloaderForUrl(
     rawUrl: string,
     behavior?: "app" | "website",
     websiteUrl?: string,
   ) {
-    if (!rawUrl) return;
     const settings = await browser.storage.local.get([
       "defaultBehavior",
       "websiteUrl",
     ]);
-    if (!behavior) behavior = settings.behavior as "app";
-    if (!websiteUrl) websiteUrl = settings.websiteUrl as string;
+    behavior =
+      behavior ?? (settings.defaultBehavior as "app" | "website") ?? "app";
 
+    websiteUrl = websiteUrl ?? (settings.websiteUrl as string) ?? "";
+    console.log(settings, behavior);
     if (behavior === "website") {
       const encodedUrl = encodeURIComponent(rawUrl);
       const downloadUrl = `${websiteUrl || "https://youtube-playlists.onrender.com/"}?referredLink=${encodedUrl}`;
