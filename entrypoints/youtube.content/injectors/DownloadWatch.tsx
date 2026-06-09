@@ -9,8 +9,8 @@ export function mountYoutubeWatchButton(): void {
   actions.forEach((con) => {
     if (con.querySelector(`.${youtubeThumbnail}`)) return;
     const actionBar = con.querySelector("ytd-menu-renderer")!;
-    actionBar.querySelector("ytd-download-button-renderer")?.remove();
     if (!actionBar) return;
+    actionBar.querySelector("ytd-download-button-renderer")?.remove();
     let container = document.createElement("div");
     container.className = youtubeThumbnail;
     actionBar.insertBefore(container, actionBar.children[1]);
