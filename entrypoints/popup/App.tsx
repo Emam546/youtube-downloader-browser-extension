@@ -62,62 +62,85 @@ export default function App() {
     setShowSettings(false);
   };
   return (
-    <div style={{ width: "500px" }} className="w-80 p-4 bg-white">
+    <div className="w-90 bg-slate-50  shadow-lg border border-slate-200 overflow-hidden m-0 p-0">
       {!showSettings ? (
         <>
-          <div className="flex items-center">
-            <div className="w-10 mr-1">
-              <LogoIcon className="w-full" />
+          {/* Header */}
+          <div className="p-5 border-b border-slate-200">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 flex items-center justify-center bg-red-50 rounded-xl">
+                <LogoIcon className="w-10" />
+              </div>
+
+              <div>
+                <h1 className="font-bold text-slate-900 m-0">YouTube Downloader</h1>
+                <p className="text-xs text-slate-500 m-0">
+                  Download videos instantly
+                </p>
+              </div>
             </div>
-            <h1 className="text-lg font-bold mb-4">YouTube Downloader</h1>
-          </div>
-          <p className="text-sm text-gray-600 mb-4">
-            Current URL: {currentUrl.slice(0, 50)}...
-          </p>
-
-          <div className="space-y-2 mb-4">
-            <button
-              onClick={() => {
-                browser.tabs.create({
-                  url: "https://github.com/Emam546/youtube-downloader/releases/latest",
-                });
-              }}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
-            >
-              Download Desktop App
-            </button>
-
-            <button
-              onClick={() => handleDownload("app")}
-              className="w-full bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"
-            >
-              Open in App
-            </button>
-
-            <button
-              onClick={() => handleDownload("website")}
-              className="w-full bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-700"
-            >
-              Open in Website
-            </button>
           </div>
 
-          <button
-            onClick={() => setShowSettings(true)}
-            className="w-full text-gray-600 py-2 px-4 rounded hover:bg-gray-100"
-          >
-            Settings
-          </button>
+          {/* Content */}
+          <div className="p-5">
+            <div className="bg-white rounded-xl border border-slate-200 p-3 mb-4">
+              <p className="text-xs font-medium text-slate-500 mb-1">
+                Current URL
+              </p>
+
+              <p className="text-sm text-slate-700 break-all">
+                {currentUrl.slice(0, 60)}...
+              </p>
+            </div>
+
+            <div className="space-y-3">
+              <button
+                onClick={() =>
+                  browser.tabs.create({
+                    url: "https://github.com/Emam546/youtube-downloader/releases/latest",
+                  })
+                }
+                className="w-full py-2.5 px-4 rounded-xl bg-slate-900 text-white font-medium hover:bg-black transition-all"
+              >
+                Download Desktop App
+              </button>
+
+              <button
+                onClick={() => handleDownload("app")}
+                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 text-white font-medium hover:bg-emerald-700 transition-all"
+              >
+                Open in App
+              </button>
+
+              <button
+                onClick={() => handleDownload("website")}
+                className="w-full py-2.5 px-4 rounded-xl bg-violet-600 text-white font-medium hover:bg-violet-700 transition-all"
+              >
+                Open in Website
+              </button>
+            </div>
+
+            <button
+              onClick={() => setShowSettings(true)}
+              className="mt-4 w-full py-2.5 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 transition-all"
+            >
+              Settings
+            </button>
+          </div>
         </>
       ) : (
         <>
-          <h1 className="text-lg font-bold mb-4">Settings</h1>
+          {/* Settings Header */}
+          <div className="p-5 border-b border-slate-200">
+            <h1 className="font-bold text-slate-900 text-lg">Settings</h1>
+          </div>
 
-          <div className="space-y-4">
+          <div className="p-5 space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Default Behavior
               </label>
+
               <select
                 value={settings.defaultBehavior}
                 onChange={(e) =>
@@ -126,7 +149,7 @@ export default function App() {
                     defaultBehavior: e.target.value as "app" | "website",
                   })
                 }
-                className="w-full p-2 border rounded"
+                className="w-full p-3 rounded-xl border border-slate-300 bg-white focus:ring-2 focus:ring-blue-500 focus:outline-none"
               >
                 <option value="app">App</option>
                 <option value="website">Website</option>
@@ -134,30 +157,35 @@ export default function App() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">
+              <label className="block text-sm font-medium text-slate-700 mb-2">
                 Website URL
               </label>
+
               <input
                 type="text"
                 value={settings.websiteUrl}
                 onChange={(e) =>
-                  setSettings({ ...settings, websiteUrl: e.target.value })
+                  setSettings({
+                    ...settings,
+                    websiteUrl: e.target.value,
+                  })
                 }
-                className="w-full p-2 border rounded"
                 placeholder="https://example.com"
+                className="w-full p-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               />
             </div>
 
-            <div className="flex space-x-2">
+            <div className="flex gap-3 pt-2">
               <button
                 onClick={saveSettings}
-                className="flex-1 bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+                className="flex-1 py-2.5 rounded-xl bg-blue-600 text-white font-medium hover:bg-blue-700 transition-all"
               >
                 Save
               </button>
+
               <button
                 onClick={() => setShowSettings(false)}
-                className="flex-1 bg-gray-300 text-gray-700 py-2 px-4 rounded hover:bg-gray-400"
+                className="flex-1 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-100 transition-all"
               >
                 Cancel
               </button>
